@@ -20,9 +20,9 @@ Note that for the double-blind review process, some outputs/messages within a co
 These notebooks are written in a tutorial fashion and thus we strongly recommend to follow this ordering.
 Materials covered are as follows (with the next three being used in the paper):
 
-1) Use the notebook `Lotka Volterra ForwardSens` to carry out the analysis with this model as in the paper. This shows how to write a custom `op` in `Theano` for use with `PyMC3`, using forward sensitivity analysis. NB: Use this to learn how to tackle initial values as parameters.
-2) Use the notebook `Goodwin Oscillator ForwardSens`, for the Goodwin model analysis with forward sensitivity. This demonstrates embedding in `Pytorch` and subsequent use of `Pyro`.
-3) `Goodwin Oscillator Adjoint` is same as above but using the adjoint sensitivity analysis.
+1) Use the notebook [Lotka Volterra ForwardSens](https://github.com/sg5g10/VBODE/blob/master/Lotka%20Volterra%20ForwardSens.ipynb) to carry out the analysis with this model as in the paper. This shows how to write a custom `op` in `Theano` for use with `PyMC3`, using forward sensitivity analysis. NB: Use this to learn how to tackle initial values as parameters.
+2) Use the notebook [Goodwin Oscillator ForwardSens](https://github.com/sg5g10/VBODE/blob/master/Goodwin%20Oscillator%20ForwardSens.ipynb), for the Goodwin model analysis with forward sensitivity. This demonstrates embedding in `Pytorch` and subsequent use of `Pyro`.
+3) [Goodwin Oscillator Adjoint](https://github.com/sg5g10/VBODE/blob/master/Goodwin%20Oscillator%20Adjoint.ipynb) is same as above but using the adjoint sensitivity analysis.
 
 ### Automatic Jacobian
 In all the above notebooks we manually define the Jacobians. However, for larger systems this can be laborious. Thus, the following notebooks show how `sympy`'s `Lambdify` function can be used to take advantage of its strong CAS. NB: ALternative to this is using automatic differentiation, but for large system (and a solution on a dense time grid) this can considerably slow down the run-time and thus we have avoided this approach.
