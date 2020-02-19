@@ -1,0 +1,7 @@
+*.*~
+*.pyc
+outputs/*
+outputs/Figures/*
+.vscode
+.ipynb_checkpoints
+__pycache__
