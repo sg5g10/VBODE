@@ -1,14 +1,11 @@
 # Black-box variational inference for nonlinear ordinary differential equations
 
-This repository contains notebooks that demonstrate the application of variational inference for ODE models. Inference is carried using probabilistic programming platforms, `PyMC3` and `Pyro`.
+This repository contains notebooks that demonstrate the application of variational inference for ODE models, supporting the above paper. Inference is carried using probabilistic programming platforms, `PyMC3` and `Pyro`.
 
 To make use of probabilistic programming we have embedded the `scipy.integrate.odeint` solver in the automatic differentiation software that `PyMC3` and `Pyro` uses: i.e. `Theano` and `PyTorch`. Through these notebooks we have shown various ways towads this embedding. Thus, this technique can be easily applied to other ODE solvers such as `diffeqpy` for example. Also, domain specific (such as ecology, synthetic biology, physiology etc) modelling software can be integrated with PPLs using this technique.
 
-## Background
-Familiarity with MCMC, ODE sensititivity analysis, inverse problems and automatic differentiation (or knowledge of Backpropagation algorithm) would be useful.
-
 ## Dependencies
-Generic scientific Python stack: `numpy`, `scipy`, `matplotlib`, `pandas`, `seaborn` and (optionally, for automatic Jacobians) `sympy`.
+Generic scientific Python stack: `numpy`, `scipy`, `matplotlib`, `seaborn` and (optionally, for automatic Jacobians) `sympy`.
 
 To install `PyMC3` read the following:
 https://docs.pymc.io/
@@ -17,11 +14,11 @@ For `Pyro` read:
 https://pyro.ai/ (we recommend installing from the source)
 
 ## Anonymity during review cycle
-Note that for the double-blind review process, some outputs/messages within a code-block inside one of these notebooks have been removed. Howvere, this doesn't hamper the flow of these notebooks and all of these are fully reproducible.
+Note that for the double-blind review process, some outputs/messages within a code-block inside some of these notebooks have been removed. However, this doesn't hamper the flow of these notebooks.
 
 ## Usage
 These notebooks are written in a tutorial fashion and thus we strongly recommend to follow this ordering.
-Materials covered are as follows, with the next three being used in the paper:
+Materials covered are as follows (with the next three being used in the paper):
 
 1) Use the notebook `Lotka Volterra ForwardSens` to carry out the analysis with this model as in the paper. This shows how to write a custom `op` in `Theano` for use with `PyMC3`, using forward sensitivity analysis. NB: Use this to learn how to tackle initial values as parameters.
 2) Use the notebook `Goodwin Oscillator ForwardSens`, for the Goodwin model analysis with forward sensitivity. This demonstrates embedding in `Pytorch` and subsequent use of `Pyro`.
@@ -34,8 +31,9 @@ In all the above notebooks we manually define the Jacobians. However, for larger
 5) `Goodwin Oscillator AutoJac` showcases this for the Goodwin model, and `Pyro` PPL.
 
 ## (Experimental) TensorFlow Probability: 
-1) The `experimental` directory contains an early example of mean-field ADVI on the Fitzhugh-Nagumo model using `tfp`. However, this notebook is not polished and not been updated to use latest `TensorFlow`/`TensorFlow Probability`. However, it demonstrates the use of `py_func` to embedd `scipy`'s `odeint` in `TensorFlow`.
+1) The `experimental` directory contains an early example of mean-field ADVI on the Fitzhugh-Nagumo model using `tfp`. However, this notebook is not polished and has not been updated to use latest `TensorFlow`/`TensorFlow Probability`. However, it demonstrates the use of `py_func` to embedd `scipy`'s `odeint` in `TensorFlow`.
 
 ## TODO: 
 1) Custom `C++` `op` in `PyTorch` using `boost`'s `odeint` or `SUNDIALS` `CVODE`.
+2) Update the Fitzhugh-Nagumo example with latest `TensorFlow`/`TensorFlow Probability`
 
