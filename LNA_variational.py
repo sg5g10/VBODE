@@ -84,7 +84,7 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser(
         description='Fit stochastic Lotka-Volterra model')
-    parser.add_argument('--iterations', type=int, default=10000, metavar='N',
+    parser.add_argument('--iterations', type=int, default=2000, metavar='N',
                     help='number of VI iterations') 
     parser.add_argument('--num_qsamples', type=int, default=1000, metavar='N',
                     help='number of draws from variational posterior ')                         

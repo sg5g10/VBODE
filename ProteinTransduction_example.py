@@ -84,8 +84,8 @@ if __name__ == '__main__':
                     help='number of VI iterations') 
     parser.add_argument('--num_qsamples', type=int, default=1000, metavar='N',
                     help='number of draws from variational posterior ')  
-    parser.add_argument('--num_samples', type=int, default=1000, metavar='N',
-                    help='number of NUTS post warm-up samples')    
+    parser.add_argument('--num_samples', type=int, default=500, metavar='N',
+                    help='number of NUTS samples')    
     parser.add_argument('--warmup_steps', type=int, default=500, metavar='N',
                     help='number of NUTS warmup_steps')                
     args = parser.parse_args()
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     sigma = 0.01
     real_params = [0.07, 0.6, 0.05, 0.3, 0.017, 0.3]
     sol = pr_ode_model.solve(real_params)
-    np.random.seed(121) 
+    np.random.seed(122) 
     Y = sol+np.random.randn(len(times),5)*sigma    
     
     ### Run inference ###

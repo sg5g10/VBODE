@@ -33,8 +33,8 @@ def plot_marginals(vb_params, mc_params, param_names, plot_name, real_params=Non
         if real_params is not None:
             plt.axvline(real_params[i], linewidth=2.5, color='black')
         if i==0:
-            sns.kdeplot(vb_params[:, i], color='magenta', linewidth = 2.5, label='Variational')
-            sns.kdeplot(mc_params[:, i], color='orange', linewidth = 2.5, label='MCMC')
+            sns.kdeplot(vb_params[:, i], color='magenta', linewidth = 2.5, label='VI')
+            sns.kdeplot(mc_params[:, i], color='orange', linewidth = 2.5, label='NUTS')
         else:
             sns.kdeplot(vb_params[:, i], linewidth = 2.5, color='magenta')
             sns.kdeplot(mc_params[:, i], linewidth = 2.5, color='orange')
@@ -67,19 +67,19 @@ sol = pr_ode_model_for.solve(real_params)
 np.random.seed(121)   
 Y = sol+np.random.randn(len(times),5)*sigma
 
-param_filename = './results/pr_vi_for3.p'
+param_filename = './results/pr_vi_for.p'
 vb_for = pickle.load( open( param_filename , "rb" ) )
-param_filename = './results/pr_vi_adj3.p'
+param_filename = './results/pr_vi_adj.p'
 vb_adj = pickle.load( open( param_filename , "rb" ) )
-param_filename = './results/pr_hmc_for3.p'
+param_filename = './results/pr_hmc_for.p'
 mc_for = pickle.load( open( param_filename , "rb" ) )[::,:]
-param_filename = './results/pr_hmc_adj3.p'
+param_filename = './results/pr_hmc_adj.p'
 mc_adj = pickle.load( open( param_filename , "rb" ) )[::,:]
 
 param_names = [r"$p_1$",r"$p_2$", r"$p_3$",r"$p_4$",r"$p_5$", r"$p_6$", r"$\sigma$"]   
 real_params = [0.07, 0.6, 0.05, 0.3, 0.017, 0.3, 0.01]
-plot_marginals(vb_for, mc_for, param_names, './figures/ppc_protein/marginals_for3', real_params=real_params, rows=4)
-plot_marginals(vb_adj, mc_adj, param_names, './figures/ppc_protein/marginals_adj3', real_params=real_params, rows=4)
+plot_marginals(vb_for, mc_for, param_names, './figures/ppc_protein/marginals_for', real_params=real_params, rows=4)
+plot_marginals(vb_adj, mc_adj, param_names, './figures/ppc_protein/marginals_adj', real_params=real_params, rows=4)
 
 pairwise(vb_for, parameter_names=param_names, saveto='./figures/ppc_protein/pairwise_vb_for.png', nbins=100)
 pairwise(vb_adj, parameter_names=param_names, saveto='./figures/ppc_protein/pairwise_vb_adj.png', nbins=100)
