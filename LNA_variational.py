@@ -117,14 +117,12 @@ if __name__ == '__main__':
                         vb_samples['ode_params2'][:,None].detach().numpy(),
                         vb_samples['ode_params3'][:,None].detach().numpy()
                         ),axis=1)
-    param_filename = './results/lna_vi_for.p'
-    pickle.dump(vb_params_for, open(param_filename, 'wb'))
+
     
     print('Using VJP by Adjoint Sensitivity')
     lna_ode_model = AdjointSensManualJacobians(rhs_f, jac_x_f, jac_p_f, 6, 3, \
     times, 1e-5, 1e-6, [100, 100, 0, 0 ,0 ,0])        
-    method = 'VI'
-    lr = 0.5
+
     vb_samples = run_inference(Y, LNAGenModel, lna_ode_model, method, iterations=args.iterations, \
         lr = lr, num_particles = 1, num_samples = args.num_qsamples, \
             return_sites = ("ode_params1","ode_params2","ode_params3"))
@@ -132,6 +130,5 @@ if __name__ == '__main__':
                         vb_samples['ode_params2'][:,None].detach().numpy(),
                         vb_samples['ode_params3'][:,None].detach().numpy()
                         ),axis=1)
-    param_filename = './results/lna_vi_adj.p'
-    pickle.dump(vb_params_adj, open(param_filename, 'wb'))
-    #plot_marginals(vb_params_for, vb_params_adj, param_names, real_params = real_params, rows=2)
+
+    plot_marginals(vb_params_for, vb_params_adj, param_names, real_params = real_params, rows=2)

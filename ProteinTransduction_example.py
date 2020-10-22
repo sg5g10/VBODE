@@ -101,7 +101,7 @@ if __name__ == '__main__':
     sigma = 0.01
     real_params = [0.07, 0.6, 0.05, 0.3, 0.017, 0.3]
     sol = pr_ode_model.solve(real_params)
-    np.random.seed(122) 
+    np.random.seed(121) 
     Y = sol+np.random.randn(len(times),5)*sigma    
     
     ### Run inference ###

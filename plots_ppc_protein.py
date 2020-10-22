@@ -72,9 +72,9 @@ vb_for = pickle.load( open( param_filename , "rb" ) )
 param_filename = './results/pr_vi_adj.p'
 vb_adj = pickle.load( open( param_filename , "rb" ) )
 param_filename = './results/pr_hmc_for.p'
-mc_for = pickle.load( open( param_filename , "rb" ) )[::,:]
+mc_for = pickle.load( open( param_filename , "rb" ) )[::2,:]
 param_filename = './results/pr_hmc_adj.p'
-mc_adj = pickle.load( open( param_filename , "rb" ) )[::,:]
+mc_adj = pickle.load( open( param_filename , "rb" ) )[::2,:]
 
 param_names = [r"$p_1$",r"$p_2$", r"$p_3$",r"$p_4$",r"$p_5$", r"$p_6$", r"$\sigma$"]   
 real_params = [0.07, 0.6, 0.05, 0.3, 0.017, 0.3, 0.01]

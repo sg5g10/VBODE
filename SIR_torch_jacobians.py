@@ -75,9 +75,11 @@ def plot_marginals(vb_params, mc_params, param_names, real_params=None, rows=4):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Fit SIR model with AD for jacobians')
-    parser.add_argument('--iterations', type=int, default=10000, metavar='N',
-                    help='number of VI iterations')                        
+        description='Fit stochastic Lotka-Volterra model')
+    parser.add_argument('--iterations', type=int, default=2000, metavar='N',
+                    help='number of VI iterations') 
+    parser.add_argument('--num_qsamples', type=int, default=1000, metavar='N',
+                    help='number of draws from variational posterior ')                            
     args = parser.parse_args()
 
     ### Generate Tristan da Cunha Data ###       
@@ -118,8 +120,9 @@ if __name__ == '__main__':
 
     method = 'VI'
     lr = 0.5
-    vb_samples = run_inference(Y, SIRGenModel, sir_ode_model, method, iterations=args.iterations, \
-        lr=lr, num_particles=1, return_sites=("ode_params1","ode_params2","ode_params3"))
+    vb_samples = run_inference(Y, SIRGenModel, sir_ode_model, method, \
+            iterations = args.iterations, num_samples = args.num_qsamples, \
+            lr=lr, num_particles=1, return_sites=("ode_params1","ode_params2","ode_params3"))
     vb_params_for=np.concatenate((vb_samples['ode_params1'][:,None].detach().numpy(),
                         vb_samples['ode_params2'][:,None].detach().numpy(),
                         vb_samples['ode_params3'][:,None].detach().numpy()
@@ -131,8 +134,9 @@ if __name__ == '__main__':
         times, 1e-5, 1e-6, [0.9,0.1,0.0])
     sir_ode_model.set_unknown_y0()    
     
-    vb_samples = run_inference(Y, SIRGenModel, sir_ode_model, method, iterations=args.iterations, \
-        lr=lr, num_particles=1, return_sites=("ode_params1","ode_params2","ode_params3"))
+    vb_samples = run_inference(Y, SIRGenModel, sir_ode_model, method, \
+            iterations = args.iterations, num_samples = args.num_qsamples, \
+            lr=lr, num_particles=1, return_sites=("ode_params1","ode_params2","ode_params3"))
     vb_params_adj=np.concatenate((vb_samples['ode_params1'][:,None].detach().numpy(),
                         vb_samples['ode_params2'][:,None].detach().numpy(),
                         vb_samples['ode_params3'][:,None].detach().numpy()
