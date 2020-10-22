@@ -13,11 +13,11 @@ def _kde(x, y, nbins):
     
     return xi, yi, zi
 
-def pairwise(samples, title, parameter_names=None, saveto=None, nbins=100):
+def pairwise(samples, parameter_names=None, title=None, saveto=None, nbins=100):
 
     sns.set_context("paper", font_scale=1)
-    sns.set(rc={"figure.figsize":(9,11),"font.size":20,"axes.titlesize":20,"axes.labelsize":20,
-           "xtick.labelsize":20, "ytick.labelsize":20},style="white")
+    sns.set(rc={"figure.figsize":(9,11),"font.size":25,"axes.titlesize":25,"axes.labelsize":25,
+           "xtick.labelsize":25, "ytick.labelsize":25},style="white")
 
     _, n_param = samples.shape
     fig_size = (3 * n_param, 3 * n_param)
@@ -56,8 +56,8 @@ def pairwise(samples, title, parameter_names=None, saveto=None, nbins=100):
                 axes[i, 0].set_ylabel(parameter_names[i])
             else:
                 axes[i, 0].set_ylabel('Parameter %d' % (i + 1))
-                
-    fig.suptitle(title,fontsize=40)
+    if title is not None:
+        fig.suptitle(title,fontsize=40)
     fig.tight_layout()
     fig.subplots_adjust(top=1.05)
     
