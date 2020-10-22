@@ -33,7 +33,12 @@ In all the above notebooks we manually define the Jacobians. However, for larger
 ## (Experimental) TensorFlow Probability: 
 1) The `experimental` directory contains an early example of mean-field ADVI on the Fitzhugh-Nagumo model using `tfp`. However, this notebook is not polished and has not been updated to use latest `TensorFlow`/`TensorFlow Probability`. However, it demonstrates the use of `py_func` to embed `scipy`'s `odeint` in `TensorFlow`.
 
+<<<<<<< HEAD
 ## TODO: 
 1) Custom `C++` `op` in `PyTorch` using `boost`'s `odeint` or `SUNDIALS` `CVODE`.
 2) Update the Fitzhugh-Nagumo example with latest `TensorFlow`/`TensorFlow Probability`
+=======
+## Using PyTorch's VJP.
+All the examples in the paper were run using `SymPy` `Lamdify` function. To use PyTorch's VJP see the `SIR_torch_jacobians.py` script.
+>>>>>>> 8121e04... readme update
 
