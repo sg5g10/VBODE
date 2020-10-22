@@ -14,5 +14,8 @@ To run the SIR model inference, using forward sensitivity simply use the followi
 To run with adjoint sensitivity use:
 `python SIR_example.py --num_samples 1000 --warmup_steps 500  --iterations 10000 --num_qsamples 1000 --adjoint True`
 
+To run the lotka-Volterra model with ABC-SMC run within CPP directory:
+`python setup.py build_ext -i`
+
 ## Using PyTorch's VJP.
 All the examples in the paper were run using `SymPy` `Lamdify` function. To use PyTorch's VJP see the `SIR_torch_jacobians.py` script.
